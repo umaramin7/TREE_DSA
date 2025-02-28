@@ -1,0 +1,40 @@
+class Solution {
+    private:
+     int height(Node* node) {
+        if(node== NULL){
+            return -1;
+        }
+        
+        int left = height(node->left);
+        int right = height(node->right);
+        
+        int ans = max(left,right) + 1;
+        return ans;
+     }
+  public:
+  
+  pair<int.int> diameterfast(Node* root){
+      if(root==NULL){
+          pair<int,int> p=make_pair(o,0);
+          return p;
+      }
+      pair<int,int> left=diameterfast(root->left);
+      pair<int,int> right= diameterfast(root->right);
+      
+      int opt1=left.first;
+      int opt2=right.first;
+      int opt3 =left.second + right.second + 1;
+      
+      pair<int,int> ans;
+      ans.first= max(opt1,max(opt2,opt3));
+      ans.second=max(left.seond, righr.second) + 1;
+      
+      return ans;
+      
+  }
+    int diameter(Node* root) {
+        // Your code here
+        
+        return diameterfast(root).first;
+    }
+};
