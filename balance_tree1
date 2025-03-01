@@ -1,0 +1,23 @@
+class Solution {
+    private:
+    int checkHeight(Node* node) {
+        if (node == NULL) {
+            return 0;
+        }
+
+        int leftHeight = checkHeight(node->left);
+        if (leftHeight == -1) return -1;  // If left subtree is unbalanced
+
+        int rightHeight = checkHeight(node->right);
+        if (rightHeight == -1) return -1; // If right subtree is unbalanced
+
+        if (abs(leftHeight - rightHeight) > 1) return -1;  // Check balance condition
+
+        return max(leftHeight, rightHeight) + 1;  // Return height of subtree
+    }
+    
+  public:
+    bool isBalanced(Node* root) {
+        return checkHeight(root) != -1;
+    }
+};
