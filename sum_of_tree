@@ -1,0 +1,26 @@
+class Solution {
+    private:
+    // Helper function to check if the tree is a Sum Tree and return the subtree sum
+    int checkSumTree(Node* root) {
+        if (root == NULL) return 0; // Null nodes contribute 0
+        
+        // If it's a leaf node, return its value
+        if (!root->left && !root->right) return root->data;
+
+        // Get the sum of left and right subtrees
+        int leftSum = checkSumTree(root->left);
+        int rightSum = checkSumTree(root->right);
+
+        // If any subtree is invalid (-1) OR current node doesn't satisfy the Sum Tree property
+        if (leftSum == -1 || rightSum == -1 || root->data != leftSum + rightSum) {
+            return -1; // Indicates this is NOT a Sum Tree
+        }
+
+        return leftSum + rightSum + root->data; // Return total sum including current node
+    }
+    
+  public:
+    bool isSumTree(Node* root) {
+        return checkSumTree(root) != -1; // If -1 is returned, the tree is not a Sum Tree
+    }
+};
