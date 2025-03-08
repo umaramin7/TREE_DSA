@@ -7,6 +7,7 @@ class Solution
         
         while(curr !=NULL){
             if(curr->left){
+
                 Node* prev =curr->left;
                 while(prev->right)
                     prev=prev->right;
