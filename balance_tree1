@@ -11,7 +11,7 @@ class Solution {
         int rightHeight = checkHeight(node->right);
         if (rightHeight == -1) return -1; // If right subtree is unbalanced
 
-        if (abs(leftHeight - rightHeight) > 1) return -1;  // Check balance condition
+        if (abs(leftHeight - rightHeight) > 1) return -1;  // Check  balance condition
 
         return max(leftHeight, rightHeight) + 1;  // Return height of subtree
     }
